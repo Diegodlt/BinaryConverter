@@ -38,6 +38,18 @@ function controller(conversion){
         binaryRes = decimalToBinary(Number(input.value));
         octalRes = decimalToOctal(Number(input.value));
         hexRes = decimalToHex(Number(input.value));
+        
+    } else if(conversion === "Hexidecimal"){
+        hexRes = input.value;
+        decimalRes = hexToDecimal(input.value);
+        binaryRes = hexToBinary(input.value);
+        octalRes = hexToOctal(input.value);
+    } else if(conversion == "Octal"){
+        octalRes = input.value;
+        decimalRes = octalToDecimal(input.value);
+        binaryRes = octalToBinary(input.value);
+        hexRes = octalToHex(input.value);
+        
     }
     
     
@@ -65,7 +77,7 @@ function displayResult(binary, decimal, octal, hex){
 
 // Takes binary and converts to it decimal
 function binaryToDecimal(binaryNum){
-   let binaryArr = splitBinaryNum(binaryNum);
+   let binaryArr = splitAndReverse(binaryNum);
     let decimal = 0;
     for(let i =0; i<binaryArr.length;i++){
           let bit = Number(binaryArr[i]);
@@ -76,7 +88,7 @@ function binaryToDecimal(binaryNum){
 
 //Takes binary and converts to hex
 function binaryToHex(binaryNum){
-    let binaryInput = splitBinaryNum(binaryNum)
+    let binaryInput = splitAndReverse(binaryNum)
     let hex = "";
     let decimal = 0;
     for(let i = 0; i< binaryInput.length; i++){
@@ -86,7 +98,7 @@ function binaryToHex(binaryNum){
             i++;
         }
         if(decimal>9){
-            hex += hexIndex(decimal);
+            hex += decimaltoHexIndex(decimal);
         }else{
             hex+= decimal;
         }
@@ -99,7 +111,7 @@ function binaryToHex(binaryNum){
 
 // Takes binary and converts it to Octal
 function binaryToOctal(binaryNum){
-    let binaryInput = splitBinaryNum(binaryNum);
+    let binaryInput = splitAndReverse(binaryNum);
     let decimal = 0;
     let octo = "";
     for(let i = 0; i< binaryInput.length; i++){
@@ -149,15 +161,92 @@ function decimalToHex(decimalInput){
 }
 
 
+//Converts Hex to Decimal
+function hexToDecimal(hexInput){
+    
+    let decimal = 0;
+    let count = 0;
+    let hexRegex = /[A-f|a-f]/
+    let hexArr = splitAndReverse(hexInput);
+    
+    hexArr.forEach(function(char){
+        if(char.match(hexRegex)){
+            console.log("match");
+            hexArr[count] = hexToDecimalIndex(char);
+        }
+        count++;
+         });
+         
+        //  console.log(hexArr);
+    
+    
+   
+    for(let i =0; i<hexArr.length;i++){
+          let num = Number(hexArr[i]);
+          decimal += Math.pow(16,i)*num;
+    }
+    return decimal;
+    
+    
+}
+
+//Converts Hex to Binary
+function hexToBinary(hexInput){
+    let decimal = hexToDecimal(hexInput);
+    let binary = decimalToBinary(decimal);
+    let missingZeros = 4 - binary.length%4;
+    if(missingZeros == 1){
+        binary = "0"+binary;
+    } else if(missingZeros == 2){
+        binary = "00"+binary
+    } else if(missingZeros == 3){
+        binary = "000" + binary;
+    }
+    return binary;
+}
+
+//Converts Hex to Octal
+function hexToOctal(hexInput){
+    let decimal = hexToDecimal(hexInput);
+    let binary = decimalToBinary(decimal);
+    
+    return binaryToOctal(binary);
+}
+
+
+//Converts Octal to Decimal
+function octalToDecimal(octalInput){
+   let octalArr = splitAndReverse(octalInput);
+    let decimal = 0;
+    for(let i =0; i<octalArr.length;i++){
+          let bit = Number(octalArr[i]);
+          decimal += Math.pow(8,i)*bit;
+    }
+    return decimal;
+}
+
+//Converts Octal to Binary
+function octalToBinary(octalInput){
+    let decimal = octalToDecimal(octalInput);
+    return decimalToBinary(decimal);
+}
+
+
+//Converts Octal to Hex
+function octalToHex(octalInput){
+    let binary = octalToBinary(octalInput);
+    return binaryToHex(binary);
+}
+
 
 //Splits binary input into array and puts it in reverse
-function splitBinaryNum(binaryNum){
-    return binaryNum.split("").reverse();
+function splitAndReverse(number){
+    return number.split("").reverse();
 }
 
 
 // Index for hexidecimal numbers
-var hexIndex = function(num){
+var decimaltoHexIndex = function(num){
     switch(num){
     case 10:
         return "A";
@@ -173,6 +262,24 @@ var hexIndex = function(num){
         return "F";
     }
 };
+
+var hexToDecimalIndex = function(char){
+    
+    switch(char.toUpperCase()){
+        case "A":
+            return 10;
+        case "B":
+            return 11;
+        case "C":
+            return 12;
+        case "D":
+            return 14;
+        case "E":
+            return 14;
+        case "F":
+            return 15;
+    }
+}
 
 function reverse(num){
     return num.split("").reverse().join("");
