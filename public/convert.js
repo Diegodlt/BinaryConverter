@@ -1,7 +1,7 @@
 
 console.log("Working");
 
-var input = document.getElementById("userInput");
+var userInput = document.getElementById("userInput");
 var submit = document.getElementById("submitBtn");
 var body = document.getElementById("body");
 var h1 = document.querySelector("h1");
@@ -25,30 +25,30 @@ function controller(conversion){
     var binaryRes, decimalRes, octalRes, hexRes;
     
     if(conversion === "Binary"){
-        
-       binaryRes = input.value;
-       decimalRes = binaryToDecimal(input.value);
-       hexRes = binaryToHex(input.value);
-       octalRes = binaryToOctal(input.value);
+    
+       binaryRes = userInput.value;
+       decimalRes = binaryToDecimal(userInput.value);
+       hexRes = binaryToHex(userInput.value);
+       octalRes = binaryToOctal(userInput.value);
        
        
     } else if(conversion === "Decimal"){
         
-        decimalRes = input.value;
-        binaryRes = decimalToBinary(Number(input.value));
-        octalRes = decimalToOctal(Number(input.value));
-        hexRes = decimalToHex(Number(input.value));
+        decimalRes = userInput.value;
+        binaryRes = decimalToBinary(Number(userInput.value));
+        octalRes = decimalToOctal(Number(userInput.value));
+        hexRes = decimalToHex(Number(userInput.value));
         
     } else if(conversion === "Hexidecimal"){
-        hexRes = input.value;
-        decimalRes = hexToDecimal(input.value);
-        binaryRes = hexToBinary(input.value);
-        octalRes = hexToOctal(input.value);
+        hexRes = userInput.value;
+        decimalRes = hexToDecimal(userInput.value);
+        binaryRes = hexToBinary(userInput.value);
+        octalRes = hexToOctal(userInput.value);
     } else if(conversion == "Octal"){
-        octalRes = input.value;
-        decimalRes = octalToDecimal(input.value);
-        binaryRes = octalToBinary(input.value);
-        hexRes = octalToHex(input.value);
+        octalRes = userInput.value;
+        decimalRes = octalToDecimal(userInput.value);
+        binaryRes = octalToBinary(userInput.value);
+        hexRes = octalToHex(userInput.value);
         
     }
     
@@ -88,12 +88,12 @@ function binaryToDecimal(binaryNum){
 
 //Takes binary and converts to hex
 function binaryToHex(binaryNum){
-    let binaryInput = splitAndReverse(binaryNum)
+    let binaryuserInput = splitAndReverse(binaryNum)
     let hex = "";
     let decimal = 0;
-    for(let i = 0; i< binaryInput.length; i++){
-        for(let j = 0; i<binaryInput.length && j<4; j++){
-            let binaryNum =  Number(binaryInput[i]);
+    for(let i = 0; i< binaryuserInput.length; i++){
+        for(let j = 0; i<binaryuserInput.length && j<4; j++){
+            let binaryNum =  Number(binaryuserInput[i]);
             decimal += (Math.pow(2,j)*binaryNum);
             i++;
         }
@@ -111,12 +111,12 @@ function binaryToHex(binaryNum){
 
 // Takes binary and converts it to Octal
 function binaryToOctal(binaryNum){
-    let binaryInput = splitAndReverse(binaryNum);
+    let binaryuserInput = splitAndReverse(binaryNum);
     let decimal = 0;
     let octo = "";
-    for(let i = 0; i< binaryInput.length; i++){
-        for(let j = 0; i<binaryInput.length && j<3; j++){
-            let binaryNum =  Number(binaryInput[i]);
+    for(let i = 0; i< binaryuserInput.length; i++){
+        for(let j = 0; i<binaryuserInput.length && j<3; j++){
+            let binaryNum =  Number(binaryuserInput[i]);
             decimal += (Math.pow(2,j)*binaryNum);
             i++;
         }
@@ -130,16 +130,16 @@ function binaryToOctal(binaryNum){
 
 
 //Convert Decimal to binary
-function decimalToBinary(decimalInput){
+function decimalToBinary(decimaluserInput){
     let binary = "";
-    console.log("This is decimal input " + decimalInput);
-    while(decimalInput>0){
+    console.log("This is decimal userInput " + decimaluserInput);
+    while(decimaluserInput>0){
         
-        decimalInput /= 2;
-        let remainder = decimalInput%1;
-        if(remainder>0 | decimalInput == .5){
+        decimaluserInput /= 2;
+        let remainder = decimaluserInput%1;
+        if(remainder>0 | decimaluserInput == .5){
             binary += 1;
-            decimalInput -= 0.5;
+            decimaluserInput -= 0.5;
         }
         else{
             binary+=0;
@@ -149,25 +149,25 @@ function decimalToBinary(decimalInput){
 }
 
 //Convert Decimal to Octal
-function decimalToOctal(decimalInput){
-    var binaryNum = decimalToBinary(decimalInput);
+function decimalToOctal(decimaluserInput){
+    var binaryNum = decimalToBinary(decimaluserInput);
     return binaryToOctal(binaryNum);
 }
 
 //Convert Decimal to Hex
-function decimalToHex(decimalInput){
-    var binaryNum = decimalToBinary(decimalInput);
+function decimalToHex(decimaluserInput){
+    var binaryNum = decimalToBinary(decimaluserInput);
     return binaryToHex(binaryNum);
 }
 
 
 //Converts Hex to Decimal
-function hexToDecimal(hexInput){
+function hexToDecimal(hexuserInput){
     
     let decimal = 0;
     let count = 0;
     let hexRegex = /[A-f|a-f]/
-    let hexArr = splitAndReverse(hexInput);
+    let hexArr = splitAndReverse(hexuserInput);
     
     hexArr.forEach(function(char){
         if(char.match(hexRegex)){
@@ -191,8 +191,8 @@ function hexToDecimal(hexInput){
 }
 
 //Converts Hex to Binary
-function hexToBinary(hexInput){
-    let decimal = hexToDecimal(hexInput);
+function hexToBinary(hexuserInput){
+    let decimal = hexToDecimal(hexuserInput);
     let binary = decimalToBinary(decimal);
     let missingZeros = 4 - binary.length%4;
     if(missingZeros == 1){
@@ -206,8 +206,8 @@ function hexToBinary(hexInput){
 }
 
 //Converts Hex to Octal
-function hexToOctal(hexInput){
-    let decimal = hexToDecimal(hexInput);
+function hexToOctal(hexuserInput){
+    let decimal = hexToDecimal(hexuserInput);
     let binary = decimalToBinary(decimal);
     
     return binaryToOctal(binary);
@@ -215,8 +215,8 @@ function hexToOctal(hexInput){
 
 
 //Converts Octal to Decimal
-function octalToDecimal(octalInput){
-   let octalArr = splitAndReverse(octalInput);
+function octalToDecimal(octaluserInput){
+   let octalArr = splitAndReverse(octaluserInput);
     let decimal = 0;
     for(let i =0; i<octalArr.length;i++){
           let bit = Number(octalArr[i]);
@@ -226,20 +226,20 @@ function octalToDecimal(octalInput){
 }
 
 //Converts Octal to Binary
-function octalToBinary(octalInput){
-    let decimal = octalToDecimal(octalInput);
+function octalToBinary(octaluserInput){
+    let decimal = octalToDecimal(octaluserInput);
     return decimalToBinary(decimal);
 }
 
 
 //Converts Octal to Hex
-function octalToHex(octalInput){
-    let binary = octalToBinary(octalInput);
+function octalToHex(octaluserInput){
+    let binary = octalToBinary(octaluserInput);
     return binaryToHex(binary);
 }
 
 
-//Splits binary input into array and puts it in reverse
+//Splits binary userInput into array and puts it in reverse
 function splitAndReverse(number){
     return number.split("").reverse();
 }
