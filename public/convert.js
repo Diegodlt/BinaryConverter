@@ -40,10 +40,12 @@ function controller(conversion){
         hexRes = decimalToHex(Number(userInput.value));
         
     } else if(conversion === "Hexidecimal"){
+        
         hexRes = userInput.value;
         decimalRes = hexToDecimal(userInput.value);
         binaryRes = hexToBinary(userInput.value);
         octalRes = hexToOctal(userInput.value);
+        
     } else if(conversion == "Octal"){
         octalRes = userInput.value;
         decimalRes = octalToDecimal(userInput.value);
@@ -177,7 +179,7 @@ function hexToDecimal(hexuserInput){
         count++;
          });
          
-        //  console.log(hexArr);
+        
     
     
    
@@ -239,7 +241,7 @@ function octalToHex(octaluserInput){
 }
 
 
-//Splits binary userInput into array and puts it in reverse
+//Splits userInput into array and puts it in reverse
 function splitAndReverse(number){
     return number.split("").reverse();
 }
