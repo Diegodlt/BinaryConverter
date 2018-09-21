@@ -4,7 +4,7 @@ console.log("Working");
 var userInput = document.getElementById("userInput");
 var submit = document.getElementById("submitBtn");
 var body = document.getElementById("body");
-var h1 = document.querySelector("h1");
+var h1 = document.getElementById("display");
 var convertFrom = document.getElementById("convertFrom");
 var convertTo = document.getElementById("convertTo");
 

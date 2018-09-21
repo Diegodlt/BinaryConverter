@@ -2,28 +2,75 @@
 <html>
     <head>
         
+        <link rel = "stylesheet" href= "stylesheets/convert.css">
+       <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Source+Code+Pro" rel="stylesheet">
     </head>
     
     <body id = "body">
         
         
-        <select id = "convertFrom">
-            <option>Binary</option>
-            <option>Decimal</option>
-            <option>Octal</option>
-            <option>Hexidecimal</option>
-        </select>
-        <select id = "convertTo">
-            <option>Decimal</option>
-            <option>Binary</option>
-            <option>Octal</option>
-            <option>Hexidecimal</option>
-        </select>
+        <div id="title">Binary Converter</div>
         
-    
-        <input id = "userInput" type= "text">
-        <input id = "submitBtn" type = "button" value = "convert">
-         <h1>This is a test</h1>
+        <div class = "main-container">
+            
+            <div id = "calcScreen">
+                 <div id = "result"><h1 id = "display">0</h1></div>
+                 <div id = "overlay"></div>
+            </div>
+            
+            <!--<hr></hr>-->
+            <div id = "inner-screen">
+                <div id = "buttons">
+                    <div class = "calcBtn">0</div>
+                    <div class = "calcBtn">1</div>
+                    <div class = "calcBtn">2</div>
+                    <div class = "calcBtn">3</div>
+                    <div class = "calcBtn">4</div>
+                    <div class = "calcBtn">5</div>
+                    <div class = "calcBtn">6</div>
+                    <div class = "calcBtn">7</div>
+                    <div class = "calcBtn">8</div>
+                    <div class = "calcBtn">9</div>
+                    <div class = "calcBtn">A</div>
+                    <div class = "calcBtn">B</div>
+                    <div class = "calcBtn">C</div>
+                    <div class = "calcBtn">D</div>
+                    <div class = "calcBtn">E</div>
+                    <div class = "calcBtn">F</div>
+                </div>
+                
+                <div id = "switches">
+                    
+                    <button>AC </button>
+                    <hr></hr>
+                    <p>Convert</p>
+                    <hr></hr>
+                    <p>From</p>
+                    <select id = "convertFrom">
+                        <option>Binary</option>
+                        <option>Decimal</option>
+                        <option>Octal</option>
+                        <option>Hexidecimal</option>
+                    </select>
+                    <p>To</p>
+                    <select id = "convertTo">
+                        <option>Decimal</option>
+                        <option>Binary</option>
+                        <option>Octal</option>
+                        <option>Hexidecimal</option>
+                    </select>
+                    
+                     <div class = "input">
+                        <p>Number To Convert</p>
+                        <input id = "userInput" type= "text" placeholder= "Input">
+                        <input id = "submitBtn" type = "button" value = "convert">
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+        
          
          
         <script type="text/javascript" src="convert.js"></script>
