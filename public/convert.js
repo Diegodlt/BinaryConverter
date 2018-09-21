@@ -7,6 +7,9 @@ var body = document.getElementById("body");
 var h1 = document.getElementById("display");
 var convertFrom = document.getElementById("convertFrom");
 var convertTo = document.getElementById("convertTo");
+var clearScreen = document.getElementById("clearScreen");
+var calcButtons = document.getElementsByClassName("calcBtn");
+
 
 
 // body.addEventListener("keypress",function(){
@@ -14,11 +17,22 @@ var convertTo = document.getElementById("convertTo");
 // });
 
 
+// This adds functionlality to the calculator buttons
+for(let i=0; i<calcButtons.length; i++){
+    calcButtons[i].addEventListener("click",function(){
+        userInput.value += calcButtons[i].textContent;
+    })
+}
+
 submit.addEventListener("click",function(){
    
     controller(convertFrom.value);
    
 });
+
+clearScreen.addEventListener("click", function(){
+    h1.textContent = "0";
+})
 
 
 function controller(conversion){
@@ -59,6 +73,9 @@ function controller(conversion){
     displayResult(binaryRes, decimalRes, octalRes, hexRes);
 }
 
+
+
+//Displays the result depending on the chosen html <select> attribute
 function displayResult(binary, decimal, octal, hex){
     let conversionUnit =convertTo.value;
     
