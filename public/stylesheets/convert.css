@@ -20,7 +20,7 @@ body{
     margin: auto;
     padding: 10px;
     border-radius: 3px;
-    background-color: rgb(10,10,10);
+    background-color: rgb(30,30,30);
     box-shadow: 2px 2px 2px black;
     font-family: 'Source Code Pro', monospace;
     font-size: 15px;
@@ -130,17 +130,28 @@ h1{
     line-height: 60px;
 }
 
+
+.calcBtn:active{
+    box-shadow: none;
+   transform: translateY(4px);
+}
+
 button{
-    
+    outline:none;
     border: none;
     border-radius: 5px;
     color: white;
     background-color: red;
-    box-shadow: 0 0 2px black;
+    box-shadow: 2px 2px 1px black;
     width: 180px;
     padding: 10px 0 ;
     display: block;
     margin: 5px auto 10px auto;
+}
+
+button:active{
+    box-shadow: none;
+   transform: translateY(4px);
 }
 
 
@@ -165,7 +176,8 @@ p{
 }
 
 #submitBtn{
-    box-shadow: 0 0 2px black;
+    outline: none;
+    box-shadow: 2px 2px 2px black;
     border: none;
     border-radius: 5px;
     color: white;
@@ -175,6 +187,11 @@ p{
     display: block;
     margin: 10px auto;
     
+}
+
+#submitBtn:active{
+    box-shadow: none;
+   transform: translateY(4px);
 }
 
 #convertTo{
